@@ -1,10 +1,27 @@
 import Image from "next/image";
+import * as React from "react";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      <div className="relative w-screen h-screen bg-gray-100">
+      <NavigationMenu>
+            <NavigationMenuList className="flex space-x-4 bg-gray-800 p-4 rounded-lg">
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                        <Link href="/" className="text-white hover:underline">Home</Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                        <Link href="/contact" className="text-white hover:underline">Events</Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+            </NavigationMenuList>
+        </NavigationMenu>
+        <div className="relative w-screen h-screen bg-gray-100">
       <h1 className="absolute top-20 left-1/2 transform -translate-x-1/2 text-5xl font-bold text-blue-600">
         BisonsConnect
       </h1>
