@@ -84,7 +84,7 @@ export default function Home() {
             priority
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black/40">
-            <h1 className="text-4xl md:text-5xl font-bold">Welcome to BisonConnect</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">Welcome to BisonsConnect</h1>
               <p className="text-lg font-bold leading-relaxed mt-2 max-w-[80%] lg:max-w-[60%]">
                 <br></br>Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! 
                 Feeling lonely? <br></br>No problem. We got all kinds of events for you.
