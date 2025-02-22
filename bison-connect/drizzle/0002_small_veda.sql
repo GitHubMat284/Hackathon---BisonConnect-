@@ -1,0 +1,1 @@
+ALTER TABLE `registrations` DROP COLUMN `registration_time`;

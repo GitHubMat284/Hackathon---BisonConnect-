@@ -1,70 +1,131 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { EventCard } from "@/components/ui/event-card";
-import NewEventDialog from "@/components/ui/NewEventDialog";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-// Accept events as a prop from the server component.
-export default function EventsClient({ events }: { events: any[] }) {
-  // Compute unique badges from the events data.
-  const uniqueBadges = Array.from(
-    new Set(events.flatMap((event) => event.badges || []))
+import { Badge } from "@/components/ui/badge";
+import { CiLocationOn, CiClock1 } from "react-icons/ci";
+import { FaCheck } from "react-icons/fa";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import {
+  registerForEvent, // use the new wrapper function
+  getRegistrationCountByTitle,
+} from "@/app/actions";
+
+export interface Event {
+  title: string;
+  subtitle: string;
+  location: string;
+  time: string;
+  badges?: string[];
+  description?: string;
+}
+
+interface EventCardProps extends React.ComponentPropsWithoutRef<"div"> {
+  event: Event;
+}
+
+export function EventCard({ event, className, ...props }: EventCardProps) {
+  const [registrationCount, setRegistrationCount] = useState<number | null>(
+    null
   );
 
-  const [selectedBadge, setSelectedBadge] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    const fetchRegistrationCount = async () => {
+      try {
+        const count = await getRegistrationCountByTitle(event.title);
+        setRegistrationCount(count);
+      } catch (error) {
+        console.error("Failed to fetch registration count:", error);
+      }
+    };
 
-  const filteredEvents = events.filter((event) => {
-    const matchesBadge =
-      selectedBadge === "All" ||
-      (event.badges && event.badges.includes(selectedBadge));
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      event.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesBadge && matchesSearch;
-  });
+    fetchRegistrationCount();
+  }, [event.title]);
 
   return (
-    <div className="flex flex-col items-center gap-6">
-      <div className="w-full flex justify-end">
-        <NewEventDialog />
+    <Card className={`w-[350px] ${className ?? ""}`} {...props}>
+      <CardHeader>
+        <CardTitle>{event.title}</CardTitle>
+        <CardDescription>{event.subtitle}</CardDescription>
+        <CardDescription>
+          <span className="inline-flex items-center">
+            <CiLocationOn /> {event.location}
+          </span>
+        </CardDescription>
+        <CardDescription>
+          <span className="inline-flex items-center">
+            <CiClock1 /> {event.time}
+          </span>
+        </CardDescription>
+        {registrationCount !== null && (
+          <CardDescription>
+            <span className="inline-flex items-center">
+              <FaCheck /> {registrationCount} registered
+            </span>
+          </CardDescription>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div className="flex gap-2 mt-1 min-h-[40px]">
+          {event.badges && event.badges.length > 0 && (
+            <div className="flex gap-2 mt-1">
+              {event.badges.map((badge, index) => (
+                <Badge key={index}>{badge}</Badge>
+              ))}
+            </div>
+          )}
+        </div>
+      </CardContent>
+      <div className="p-4">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="default" className="w-full">
+              Register
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <form action={registerForEvent} className="space-y-4 py-2">
+              <DialogHeader>
+                <DialogTitle>Register for {event.title}</DialogTitle>
+                <DialogDescription>
+                  Please fill in your details and confirm your registration.
+                </DialogDescription>
+              </DialogHeader>
+              <input type="hidden" name="eventTitle" value={event.title} />
+              <input
+                type="text"
+                name="registrantName"
+                placeholder="Your Name"
+                className="input w-full"
+              />
+              <input
+                type="email"
+                name="registrantEmail"
+                placeholder="Your Email"
+                className="input w-full"
+              />
+              <DialogFooter>
+                <Button type="submit">Submit Registration</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Select onValueChange={(value) => setSelectedBadge(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Badge" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="All">All</SelectItem>
-            {uniqueBadges.map((badge) => (
-              <SelectItem key={badge} value={badge}>
-                {badge}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Input
-          type="text"
-          placeholder="Search events"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
-        {filteredEvents.map((event, index) => (
-          <EventCard key={index} event={event} />
-        ))}
-      </div>
-    </div>
+    </Card>
   );
 }

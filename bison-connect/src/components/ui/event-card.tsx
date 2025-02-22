@@ -20,6 +20,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "./button";
+// Import the server action for registration.
+import { registerForEventByTitle } from "@/app/actions";
 
 export interface Event {
   title: string;
@@ -35,6 +37,17 @@ interface EventCardProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 export function EventCard({ event, className, ...props }: EventCardProps) {
+  const processRegistration = async (formData: FormData) => {
+    const eventTitle = formData.get("eventTitle") as string;
+    const registrantName = formData.get("registrantName") as string;
+    const registrantEmail = formData.get("registrantEmail") as string;
+    await registerForEventByTitle({
+      eventTitle,
+      registrantName,
+      registrantEmail,
+    });
+  };
+
   return (
     <Card className={`w-[350px] ${className ?? ""}`} {...props}>
       <CardHeader>
@@ -70,27 +83,30 @@ export function EventCard({ event, className, ...props }: EventCardProps) {
             </Button>
           </DialogTrigger>
           <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Register for {event.title}</DialogTitle>
-              <DialogDescription>
-                Please fill in your details and confirm your registration.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4 py-2">
+            <form action={processRegistration} className="space-y-4 py-2">
+              <DialogHeader>
+                <DialogTitle>Register for {event.title}</DialogTitle>
+                <DialogDescription>
+                  Please fill in your details and confirm your registration.
+                </DialogDescription>
+              </DialogHeader>
+              <input type="hidden" name="eventTitle" value={event.title} />
               <input
                 type="text"
+                name="registrantName"
                 placeholder="Your Name"
                 className="input w-full"
               />
               <input
                 type="email"
+                name="registrantEmail"
                 placeholder="Your Email"
                 className="input w-full"
               />
-            </div>
-            <DialogFooter>
-              <Button type="submit">Submit Registration</Button>
-            </DialogFooter>
+              <DialogFooter>
+                <Button type="submit">Submit Registration</Button>
+              </DialogFooter>
+            </form>
           </DialogContent>
         </Dialog>
       </div>
