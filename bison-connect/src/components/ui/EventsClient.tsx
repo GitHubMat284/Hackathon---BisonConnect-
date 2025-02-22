@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { EventCard } from "@/components/ui/event-card";
+import NewEventDialog from "@/components/ui/NewEventDialog";
 
 // Accept events as a prop from the server component.
 export default function EventsClient({ events }: { events: any[] }) {
@@ -33,6 +34,10 @@ export default function EventsClient({ events }: { events: any[] }) {
 
   return (
     <div className="flex flex-col items-center gap-6">
+      <div className="w-full flex justify-end">
+        <NewEventDialog />
+      </div>
+
       <div className="flex flex-col sm:flex-row gap-4">
         <Select onValueChange={(value) => setSelectedBadge(value)}>
           <SelectTrigger className="w-[180px]">

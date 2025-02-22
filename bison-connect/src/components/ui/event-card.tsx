@@ -65,7 +65,9 @@ export function EventCard({ event, className, ...props }: EventCardProps) {
       <div className="p-4">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="default">Register</Button>
+            <Button variant="default" className="w-full">
+              Register
+            </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
