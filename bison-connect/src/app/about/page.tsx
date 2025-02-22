@@ -39,11 +39,13 @@ export default function AboutPage() {
       </Link>
 
       {/* Adjusted h1 and p Tags */}
-      <h1 style={{ fontSize: '4rem', color: 'white', margin: '0' }}>About Page</h1>
-      <p style={{ fontSize: '1.5rem', color: 'white', marginTop: '20px' }}>
-      Welcome to BisonsConnect! This platform helps University of Manitoba students find events, connect with others, and explore campus life. We’re all about connecting you with the coolest events like epic dance parties, important networking sessions and even communal gatherings! Whether you’re into wild late-night parties or old fashioned dancing lessons, we’ve got the scoop on events that make college life unforgettable.
-      Our number 1 policy is to leave your house, touch some grass and have a good time! So grab your friends and dive into a world of fun, learning, and community. From live music to art shows, there’s always something happening that’ll spark your interest and ignite your passions. Stay tuned and get ready to make some incredible memories—this is your hub for all things awesome at our university!
+      <h1 style={{ fontSize: '4rem', color: 'white', margin: '0' }}>About Us</h1>
+      <p style={{ fontSize: '1.5rem', color: 'white', marginTop: '20px' }} className="text-lg font-bold leading-relaxed mt-2 max-w-[80%] lg:max-w-[60%]">
+      Welcome to BisonsConnect! This platform helps University of Manitoba students find events, connect with others, and explore campus life. Whether you’re into wild late-night parties or old fashioned dancing lessons, we’ve got the scoop on events that make college life unforgettable.
+      Our number 1 policy is to leave your house, touch some grass and have a good time! So grab your friends and dive into a world of fun, learning, and community. Stay tuned and get ready to make some incredible memories—this is your hub for all things awesome at our university!
       </p>
+
+     
     </div>
       
       </main>

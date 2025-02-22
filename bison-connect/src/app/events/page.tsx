@@ -72,6 +72,8 @@ export default function Home() {
               location: "Online",
               time: "March 12, 2022",
               badges: ["Virtual", "Free"],
+               description: "This is an exclusive networking event for only the coolest kids around. Watch out, you might make a friend or two..."
+              
             }}
           />
           <EventCard
@@ -80,6 +82,7 @@ export default function Home() {
               subtitle: "A virtual event for the smelly comp sci kids",
               location: "Online",
               time: "March 12, 2022",
+               description: "This is an exclusive networking event"
             }}
           />
           <EventCard
@@ -88,6 +91,7 @@ export default function Home() {
               subtitle: "A virtual event for the smelly comp sci kids",
               location: "Online",
               time: "March 12, 2022",
+               description: "This is an exclusive networking event"
             }}
           />
           <EventCard
@@ -96,6 +100,7 @@ export default function Home() {
               subtitle: "A virtual event for the smelly comp sci kids",
               location: "Online",
               time: "March 12, 2022",
+               description: "This is an exclusive networking event"
             }}
           />
         </div>
@@ -103,3 +108,4 @@ export default function Home() {
     </div>
   );
 }
+
