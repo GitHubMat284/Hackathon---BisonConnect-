@@ -88,7 +88,7 @@ export default function Home() {
       onClick={openModal} 
       className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
     >
-      Ask Larry about his experience
+      View Possible Events
     </button>
 
     {/* Modal component */}
