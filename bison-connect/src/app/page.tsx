@@ -93,27 +93,15 @@ export default function Home() {
             <button 
               onClick={openModal} 
               className=" mt-6 px-6 py-3 font-bold bg-blue-500 text-white rounded hover:bg-blue-600">
-              Ask Larry about his experience
+              View Possible Events
             </button>
 
-    {/* Centered button underneath the paragraph */}
-    <button 
-      onClick={openModal} 
-      className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-    >
-      View Possible Events
-    </button>
             {/* Modal component */}
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
           </div>
         </div>
+            <Modal isOpen={isModalOpen} onClose={closeModal} />
         {/* Container for centering content */}
-        <div className="flex flex-col items-center justify-center h-screen">
-          {/* Paragraph moved higher */}
-          
-
-          
-        </div>
+    
       </main>
 
 
