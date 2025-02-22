@@ -75,13 +75,26 @@ export default function Home() {
 
       {/* Empty Body Section */}
       <main className="flex-1">
-  {/* Container for centering content */}
-  <div className="flex flex-col items-center justify-center h-screen">
-    {/* Paragraph moved higher */}
-    <p className="text-center text-lg text-gray-700 mb-8">
-      Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! 
-      Feeling lonely? No problem. We got all kinds of events for you.
-    </p>
+        <div className="w-full h-[300px] md:h-[400px] lg:h-[700px] relative">
+          <Image
+            src="/homepage-background.jpg"
+            alt="University Community Banner"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black/40">
+            <h1 className="text-4xl md:text-5xl font-bold">Welcome to BisonConnect</h1>
+              <p className="text-lg font-bold leading-relaxed mt-2 max-w-[80%] lg:max-w-[60%]">
+                <br></br>Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! 
+                Feeling lonely? <br></br>No problem. We got all kinds of events for you.
+              </p>
+              {/* Centered button underneath the paragraph */}
+            <button 
+              onClick={openModal} 
+              className=" mt-6 px-6 py-3 font-bold bg-blue-500 text-white rounded hover:bg-blue-600">
+              Ask Larry about his experience
+            </button>
 
     {/* Centered button underneath the paragraph */}
     <button 
@@ -90,11 +103,18 @@ export default function Home() {
     >
       View Possible Events
     </button>
+            {/* Modal component */}
+            <Modal isOpen={isModalOpen} onClose={closeModal} />
+          </div>
+        </div>
+        {/* Container for centering content */}
+        <div className="flex flex-col items-center justify-center h-screen">
+          {/* Paragraph moved higher */}
+          
 
-    {/* Modal component */}
-    <Modal isOpen={isModalOpen} onClose={closeModal} />
-  </div>
-</main>
+          
+        </div>
+      </main>
 
 
     </div>
