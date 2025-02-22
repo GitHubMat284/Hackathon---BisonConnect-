@@ -75,23 +75,28 @@ export default function Home() {
 
       {/* Empty Body Section */}
       <main className="flex-1">
-      <div className="flex items-center justify-center h-screen">
-      <p className="text-center text-lg text-gray-700">
-        Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! Feeling lonely? No problem. We got all kinds of events for you.
-      </p>
-      <div className="flex flex-col items-center justify-center h-screen">
-      <button 
-        onClick={openModal} 
-        className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Open Modal
-      </button>
+  {/* Container for centering content */}
+  <div className="flex flex-col items-center justify-center h-screen">
+    {/* Paragraph moved higher */}
+    <p className="text-center text-lg text-gray-700 mb-8">
+      Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! 
+      Feeling lonely? No problem. We got all kinds of events for you.
+    </p>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} />
-    </div>
-      </div>
+    {/* Centered button underneath the paragraph */}
+    <button 
+      onClick={openModal} 
+      className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+    >
+      Ask Larry about his experience
+    </button>
 
-      </main>
+    {/* Modal component */}
+    <Modal isOpen={isModalOpen} onClose={closeModal} />
+  </div>
+</main>
+
+
     </div>
   );
 }
