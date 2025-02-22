@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header Section */}
-      <header className="w-full bg-gray-100 shadow-md flex flex-col items-center py-4">
+      <header className="w-full bg-blue-900 shadow-md flex flex-col items-center py-1">
         {/* Top Section: Logo & Title */}
         <div className="flex items-center justify-between w-full px-6">
           {/* Logo on the Left */}
@@ -34,7 +34,7 @@ export default function Home() {
           />
 
           {/* Title in the Center */}
-          <h1 className="text-3xl font-bold text-blue-600 text-center flex-grow">
+          <h1 className="text-3xl font-bold text-yellow-400 text-center flex-grow font-uofm">
             BisonsConnect
           </h1>
 
