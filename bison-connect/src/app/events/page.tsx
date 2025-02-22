@@ -1,24 +1,14 @@
-"use client"; // Add this line
 import Image from "next/image";
-import * as React from "react";
-
-import { useState } from 'react';
-import Modal from './Modal';
-
+import Link from "next/link";
+import { EventCard } from "@/components/ui/event-card";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link"; 
-
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Specify state type
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header Section */}
@@ -72,39 +62,44 @@ export default function Home() {
           </NavigationMenu>
         </nav>
       </header>
-
-      {/* Empty Body Section */}
-      <main className="flex-1">
-        <div className="w-full h-[300px] md:h-[400px] lg:h-[700px] relative">
-          <Image
-            src="/homepage-background.jpg"
-            alt="University Community Banner"
-            layout="fill"
-            objectFit="cover"
-            priority
+      {/* Cards Section */}
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
+          <EventCard
+            event={{
+              title: "Bison Connect",
+              subtitle: "A virtual event for the smelly comp sci kids",
+              location: "Online",
+              time: "March 12, 2022",
+              badges: ["Virtual", "Free"],
+            }}
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black/40">
-            <h1 className="text-4xl md:text-5xl font-bold">Welcome to BisonsConnect</h1>
-              <p className="text-lg font-bold leading-relaxed mt-2 max-w-[80%] lg:max-w-[60%]">
-                <br></br>Welcome to BisonsConnect! The home page for all things events at the University of Manitoba! 
-                Feeling lonely? <br></br>No problem. We got all kinds of events for you.
-              </p>
-              {/* Centered button underneath the paragraph */}
-            <button 
-              onClick={openModal} 
-              className=" mt-6 px-6 py-3 font-bold bg-blue-500 text-white rounded hover:bg-blue-600">
-              View Possible Events
-            </button>
-
-            {/* Modal component */}
-          </div>
+          <EventCard
+            event={{
+              title: "Bison Connect",
+              subtitle: "A virtual event for the smelly comp sci kids",
+              location: "Online",
+              time: "March 12, 2022",
+            }}
+          />
+          <EventCard
+            event={{
+              title: "Bison Connect",
+              subtitle: "A virtual event for the smelly comp sci kids",
+              location: "Online",
+              time: "March 12, 2022",
+            }}
+          />
+          <EventCard
+            event={{
+              title: "Bison Connect",
+              subtitle: "A virtual event for the smelly comp sci kids",
+              location: "Online",
+              time: "March 12, 2022",
+            }}
+          />
         </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} />
-        {/* Container for centering content */}
-    
-      </main>
-
-
+      </div>
     </div>
   );
 }
