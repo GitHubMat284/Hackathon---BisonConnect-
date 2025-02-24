@@ -1,6 +1,6 @@
 # BisionsConnect
 
-|![image](https://github.com/user-attachments/assets/65d086e0-63e0-4c3f-bb35-c287d4fdf278) |
+|![original](https://github.com/user-attachments/assets/3042f9d9-3415-451b-9dde-3ee7404b522f)|
 |:--:|
 | *Main Landing Page* |
 
